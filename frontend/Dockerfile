@@ -1,27 +1,30 @@
-# STAGE 1: Build the React app
-FROM node:18-alpine as build  # First stage called 'build'
+# Build stage
+FROM node:18-alpine AS build
 
 WORKDIR /app
 
-# Copy dependency files
+# Copy package files
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies - using npm install instead of npm ci
 RUN npm install
 
-# Copy all source code
+# Copy source code
 COPY . .
 
-# Build the app (creates 'build' folder with optimized files)
+# Build the app
 RUN npm run build
 
-# STAGE 2: Serve with nginx (lightweight web server)
+# Production stage
 FROM nginx:alpine
 
-# Copy built files from stage 1 to nginx's serving folder
+# Copy built assets from build stage
 COPY --from=build /app/build /usr/share/nginx/html
 
-# Nginx uses port 80 by default
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80
 EXPOSE 80
 
 # Start nginx
