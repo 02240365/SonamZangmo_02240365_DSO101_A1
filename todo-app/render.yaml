@@ -1,11 +1,9 @@
 services:
-  # Backend Web Service
   - type: web
     name: be-todo
-    runtime: docker
-    dockerfilePath: ./backend/Dockerfile
+    env: docker
     plan: free
-    healthCheckPath: /health
+    dockerfilePath: ./backend/Dockerfile
     envVars:
       - key: DB_HOST
         value: dpg-d81v770js32c738edj0g-a.oregon-postgres.render.com
@@ -18,17 +16,13 @@ services:
       - key: DB_PORT
         value: 5432
       - key: PORT
-        value: 5001
+        value: 10000
 
-  # Frontend Web Service
   - type: web
     name: fe-todo
-    runtime: docker
-    dockerfilePath: ./frontend/Dockerfile
+    env: docker
     plan: free
+    dockerfilePath: ./frontend/Dockerfile
     envVars:
       - key: REACT_APP_API_URL
-        fromService:
-          name: be-todo
-          type: web
-          property: url
+        value: https://be-todo-02240365.onrender.com
