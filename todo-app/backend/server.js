@@ -4,7 +4,7 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -15,7 +15,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT || 5432,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.DB_HOST ? { rejectUnauthorized: false } : false,
 });
 
 // Initialize DB
@@ -83,6 +83,11 @@ app.delete('/api/tasks/:id', async (req, res) => {
 
 app.get('/health', (req, res) => res.json({ status: 'OK' }));
 
-initDB().then(() => {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}).catch(console.error);
+// Only start server if not in test mode
+if (process.env.NODE_ENV !== 'test') {
+  initDB().then(() => {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  }).catch(console.error);
+}
+
+module.exports = app;
