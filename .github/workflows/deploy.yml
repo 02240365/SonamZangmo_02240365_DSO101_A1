@@ -1,0 +1,45 @@
+name: Build, Push and Deploy
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1 — Checkout the code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2 — Login to Docker Hub
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Step 3 — Build and Push Backend Image
+      - name: Build and Push Backend Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/be-todo:02240365 \
+            ./todo-app/backend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/be-todo:02240365
+
+      # Step 4 — Build and Push Frontend Image
+      - name: Build and Push Frontend Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/fe-todo:02240365 \
+            ./todo-app/frontend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/fe-todo:02240365
+
+      # Step 5 — Trigger Backend Redeployment on Render
+      - name: Deploy Backend to Render
+        run: |
+          curl -X POST "${{ secrets.RENDER_BACKEND_HOOK }}"
+
+      # Step 6 — Trigger Frontend Redeployment on Render
+      - name: Deploy Frontend to Render
+        run: |
+          curl -X POST "${{ secrets.RENDER_FRONTEND_HOOK }}"
