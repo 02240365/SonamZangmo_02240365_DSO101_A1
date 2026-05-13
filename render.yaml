@@ -4,6 +4,7 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./todo-app/backend/Dockerfile
+    dockerContext: ./todo-app/backend
     envVars:
       - key: DB_HOST
         value: dpg-d81v770js32c738edj0g-a.oregon-postgres.render.com
@@ -23,6 +24,7 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./todo-app/frontend/Dockerfile
+    dockerContext: ./todo-app/frontend
     envVars:
       - key: REACT_APP_API_URL
         value: https://be-todo-02240365.onrender.com
