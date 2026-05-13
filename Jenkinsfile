@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo 'Checking out source code from GitHub...'
                 git branch: 'main',
-                    url: 'https://github.com/02240365/SonamZangmo_02240365_DSO101_A1.git''
+                    url: 'https://github.com/02240365/SonamZangmo_02240365_DSO101_A1.git'
             }
         }
 
