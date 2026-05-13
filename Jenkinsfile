@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_USERNAME = 'your-dockerhub-username'
+        DOCKERHUB_USERNAME = '02240365'
         STUDENT_ID = '02240365'
         BACKEND_IMAGE = "${DOCKERHUB_USERNAME}/be-todo:${STUDENT_ID}"
         FRONTEND_IMAGE = "${DOCKERHUB_USERNAME}/fe-todo:${STUDENT_ID}"
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo 'Checking out source code from GitHub...'
                 git branch: 'main',
-                    url: 'https://github.com/02240365/SonamZangmo_02240365_DSO101_A1.git'
+                    url: 'https://github.com/02240365/SonamZangmo_02240365_DSO101_A1.git''
             }
         }
 
