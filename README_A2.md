@@ -1,8 +1,8 @@
-# Assignment 2 — Jenkins CI/CD Pipeline
+# Assignment 2 - Jenkins CI/CD Pipeline
 
 **Name:** Sonam Zangmo  
 **Student ID:** 02240365  
-**Course:** DSO101 — Continuous Integration and Continuous Deployment
+**Course:** DSO101 - Continuous Integration and Continuous Deployment
 
 ---
 

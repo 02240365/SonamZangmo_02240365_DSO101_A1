@@ -1,8 +1,8 @@
-# Assignment 1 — CI/CD: Docker & Render Deployment
+# Assignment 1 - CI/CD: Docker & Render Deployment
 
 **Name:** Sonam Zangmo  
 **Student ID:** 02240365  
-**Course:** DSO101 — Continuous Integration and Continuous Deployment
+**Course:** DSO101 - Continuous Integration and Continuous Deployment
 
 ---
 
@@ -39,12 +39,12 @@ npm start
 ### Frontend
 ```bash
 cd todo-app/frontend
-cp .env.example .env   # set REACT_APP_API_URL=http://localhost:5000
+cp .env.example .env   # set REACT_APP_API_URL=http://localhost:5001
 npm install
 npm start
 ```
 
-📸 **Terminal showing backend running on port 5000**
+📸 **Terminal showing backend running on port 5001**
 
 ![SS](./a1_images/server%20running.png)
 
@@ -108,3 +108,5 @@ git push  # triggers auto-deploy on Render
 - **Frontend:** https://fe-todo-02240365.onrender.com
 - **Backend:** https://be-todo-02240365.onrender.com
 - **GitHub Repo:** https://github.com/02240365/SonamZangmo_02240365_DSO101_A1.git
+
+

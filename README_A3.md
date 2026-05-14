@@ -1,8 +1,8 @@
-# Assignment 3 — GitHub Actions CI/CD
+# Assignment 3 - GitHub Actions CI/CD
 
 **Name:** Sonam Zangmo  
 **Student ID:** 02240365  
-**Course:** DSO101 — Continuous Integration and Continuous Deployment
+**Course:** DSO101 - Continuous Integration and Continuous Deployment
 
 ---
 
@@ -53,10 +53,6 @@ Configured a GitHub Actions workflow to automatically build Docker images, push 
 📸 **GitHub Actions tab showing workflow running**
 
 ![SS](./a3images/action.png)
-
-📸 **All workflow steps showing green checkmarks**
-
-![SS](./a3images/workflow.png)
 
 📸 **Docker Hub showing be-todo and fe-todo with updated push date**
 
